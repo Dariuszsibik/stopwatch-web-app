@@ -1,6 +1,8 @@
 export interface Timer {
-  hour: number;
-  minute: number;
-  second: number;
-  millisecond: number;
-}
+    number: number,
+    play: boolean,
+    started: number,
+    currentElapsedTime: number,
+    totalElapsedTime: number,
+    startTime: Date,
+  };

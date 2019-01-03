@@ -1,0 +1,41 @@
+$white: #ffffff;
+$background: #518bbf;
+$red: #ff4332;
+$cyan: #295089;
+$green: #45ff39;
+$light-blue: #446ef2;
+$blue: #1a3162;
+
+$ds-accent-color: #BE8C6B;
+$ds-background: #333333;
+$ds-gray-100: #F8F8F8;
+$ds-gray-200: #EEEEEE;
+$ds-gray-600: #B7B7B7;
+$ds-gray-800: #707070;
+$ds-gray-900: #444444;
+$ds-white: #ffffff;
+$ds-black: #000000;
+$ds-input-bg: #FCFCFC;
+$ds-input-border-color: darken($ds-gray-200, 3%);
+$ds-contact-form-shadow: #292C31;
+$ds-product-search-btn-color: #CCCCCC;
+// kolory Bootstrap
+$theme-colors: ( "primary": $ds-accent-color);
+$gray-100: $ds-gray-100;
+$gray-200: $ds-gray-200;
+$gray-600: $ds-gray-600;
+$gray-800: $ds-gray-800;
+$gray-900: $ds-gray-900;
+// obramowania
+$border-radius: 0;
+$border-radius-lg: 0;
+$border-radius-sm: 0;
+
+$headings-font-weight: 700;
+$font-size-base: .875rem;
+$line-height-base: 1.75;
+$font-size-sm: ($font-size-base * .75);
+$h2-font-size: 2.143rem;
+$h3-font-size: 1.375rem;
+$h4-font-size: 1rem;
+$h5-font-size: .875rem;

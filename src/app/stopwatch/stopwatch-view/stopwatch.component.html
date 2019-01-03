@@ -1,0 +1,27 @@
+<mat-card class="timer-container">
+  <mat-card-header class="d-flex justify-content-center card-title">
+    <mat-card-title id="card-title">
+      <h2 class="card-title-h2">Stop-watch-app</h2>
+    </mat-card-title>
+  </mat-card-header>
+  <img mat-card-image>
+  <mat-card-content>
+    <h3 class="clock-font d-flex justify-content-center">
+      <span class="clock-font-time">{{ time.number | date:'HH:mm:ss:SSS' }} </span>
+    </h3>
+  </mat-card-content>
+  <mat-card-actions class="timer-actions d-flex justify-content-around rounded" role="group">
+    <button mat-button class="mat-stroked-button  mat-primary" (click)="playWatch()">
+      <i class="material-icons">play_arrow</i>Start
+    </button>
+    <button mat-button class="mat-stroked-button  mat-warn" (click)="pauseWatch()">
+      <i class="material-icons">pause</i>Wstrzymaj
+    </button>
+    <button mat-button class="mat-stroked-button mat-primary" (click)="reset()">
+      <i class="material-icons">stop</i>Zeruj
+    </button>
+    <button mat-button class="mat-stroked-button mat-primary" (click)="addTime()">
+      <i class="material-icons">save_alt</i>Pomiar
+    </button>
+  </mat-card-actions>
+</mat-card>
