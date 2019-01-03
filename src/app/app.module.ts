@@ -4,15 +4,19 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { StopwatchModule } from './stopwatch/stopwatch.module';
+import { DateTransformPipe } from './shared/pipes/date-transform.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DateTransformPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MaterialModule
+    MaterialModule,
+    StopwatchModule
   ],
   providers: [],
   bootstrap: [AppComponent]
