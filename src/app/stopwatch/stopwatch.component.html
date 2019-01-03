@@ -1,12 +1,11 @@
-
-  <div class="timesetter" ng-controller="timeController as times">
+<div class="timesetter" ng-controller="timeController as times">
     <h2>Stopwatch</h2>
     <h3 class="clockFont">
-      <span>{{ time.number | date:'mm:ss:SSS' }} </span>
+        <span>{{ time.number | date:'HH:mm:ss:SSS' }} </span>
     </h3>
     <!-- Icons from font awesome -->
-    <a class="watchcontrols" (click)="pause()"><i class="fa fa-pause">Pause</i></a>
-    <a class="watchcontrols" (click)="startPause()"><i class="fa fa-play">Start</i></a>
-    <a class="watchcontrols" (click)="reset()"><i class="fa fa-refresh">reset</i></a>
-  </div>
-
+    <a class="watchcontrols" (click)="playWatch()"><i class="fa fa-play">Start</i></a>
+    <a class="watchcontrols" (click)="pauseWatch()"><i class="fa fa-pause">Pause</i></a>
+    <a class="watchcontrols" (click)="reset()"><i class="fa fa-refresh">Zeruj</i></a>
+    <a class="watchcontrols" (click)="addTime()"><i class="fa fa-refresh">Pomiar</i></a>
+</div>

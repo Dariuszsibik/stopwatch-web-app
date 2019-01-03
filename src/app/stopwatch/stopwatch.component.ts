@@ -1,86 +1,128 @@
-import { Component, OnInit } from '@angular/core';
+import { copyObj } from '@angular/animations/browser/src/util';
+import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
 import { timer, Observable, interval, Subscription } from 'rxjs';
 import { Timer } from './model/timer.model';
-import { increaseElementDepthCount } from '@angular/core/src/render3/state';
 
 @Component({
   selector: 'app-stopwatch',
   templateUrl: './stopwatch.component.html',
   styleUrls: ['./stopwatch.component.scss']
 })
-export class StopwatchComponent implements OnInit {
 
+export class StopwatchComponent implements OnInit, OnDestroy {
 
   time = {
-    flag: false,
-    number: 0,
+    number: 82800000,
+    play: false
   };
   started = 0;
   currentElapsedTime = 0;
-  totalElapsedTime = 0;
+  totalElapsedTime = 82800000;
   startTime = null;
+  timesList = [];
   subscription: Subscription;
   timeInterval = interval(1);
 
-constructor() { }
+  constructor() {}
 
-ngOnInit() {
+  ngOnInit() {
 
-}
+    this.start();
 
-startPause() {
-  console.log(this.time, this.startTime, this.currentElapsedTime, this.totalElapsedTime)
-  if (this.time.flag === false) {
-        this.startTime = new Date();
-        this.increment();
-  } else {
-        this.time.flag = false;
-        this.startTime = new Date();
-        this.increment();
   }
 
-};
+  ngOnDestroy() {
 
-reset() {
+    this.subscription.unsubscribe();
+  }
 
-  this.time = {
-    flag: true,
-    number: 0
-  };
+  tooglePlay() {
 
-}
+    this.time.play = !this.time.play;
+    if (this.time.play) {
 
-increment() {
+      this.playWatch();
+
+    } else {
+
+      this.pauseWatch();
+
+    }
+
+  }
+
+  addTime() {
+    console.log(this.timesList);
+    this.timesList.push((this.time));
+
+  }
+
+  removeTime(t) {
+
+    this.timesList = this.timesList.filter((time) => {
+      return time.number !== t.number;
+    });
+
+  }
+
+  playWatch() {
+    this.time.play = true;
+    if (!this.startTime) {
+
+      this.startTime = new Date();
+
+    }
+
+  }
+
+  pauseWatch() {
+    this.time.play = false;
+    this.startTime = null;
+    this.totalElapsedTime += this.currentElapsedTime;
+    this.currentElapsedTime = 0;
+
+  }
+
+  start() {
 
     this.subscription = this.timeInterval
-        .subscribe(
-          x => {
-            this.time = {
-              flag: false,
-              number: 0
-            };
-            this.updateTimer();
-          }
-        )
+      .subscribe(
+        x => {
+          this.updateTimer();
+        }
+      );
+
+  }
+
+  reset() {
+
+    this.time = {
+      number: 82800000,
+      play: false
+    };
+
+    this.currentElapsedTime = 0;
+    this.startTime = null;
+    this.totalElapsedTime = 82800000;
+    this.timesList = [];
+
+  }
+
+  updateTimer() {
+
+    if (this.time.play) {
+      this.currentElapsedTime = this.getCurrentElapsedTime();
+      this.time.number = this.totalElapsedTime + this.currentElapsedTime;
+    } else {
+      this.time.number = this.totalElapsedTime;
+    }
+
+  }
+
+  getCurrentElapsedTime() {
+    const now = new Date();
+    const start = new Date(this.startTime);
+    return (now.getTime() - start.getTime());
+  }
 
 }
-
-updateTimer() {
-    this.currentElapsedTime = this.getCurrentElapsedTime();
-    this.time.number = this.totalElapsedTime + this.currentElapsedTime;
-};
-
-getCurrentElapsedTime() {
-  let now = new Date();
-  let start = new Date(this.startTime);
-  return (now.getTime() - start.getTime() )
-};
-
-pause() {
-
-  this.time.flag = true;
-  this.subscription.unsubscribe()
-
-}
-}
-
