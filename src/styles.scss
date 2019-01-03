@@ -1,1 +1,13 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import 'assets/styles/base.scss';
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+.toast-success {
+  background: #0fdb00;
+  color: black;
+}
+
+.toast-error {
+  background: rgb(204, 10, 10);
+  color: black;
+}

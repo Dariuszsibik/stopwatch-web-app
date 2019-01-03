@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, Route } from '@angular/router';
-import { StopwatchComponent } from './stopwatch/stopwatch.component';
+import { StopwatchComponent } from './stopwatch/stopwatch-view/stopwatch.component';
 
 const routes: Route[] = [
   { path: '', redirectTo: '/stopwatch', pathMatch: 'full'},

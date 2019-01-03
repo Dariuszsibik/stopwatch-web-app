@@ -1,0 +1,53 @@
+@import '../../../assets/styles/variables.scss';
+
+.timer-container {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  margin-left: 20%;
+  margin-right: 20%;
+  padding-top: 30px;
+  margin-top: 30px;
+  background: #518bbf;
+}
+
+.timer-container:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.clock-font {
+  border: 1px solid $blue ;
+  text-align: center;
+  background: $white;
+  height: 150px;
+}
+
+.clock-font-time {
+  color: $blue;
+  font-size: 3.5rem;
+  font-weight: 900;
+  letter-spacing: initial;
+  line-height: 3;
+  margin: auto 0;
+}
+
+.mat-card-title {
+  text-decoration: $blue;
+  text-align: center;
+}
+
+.timer-actions {
+  background: $white;
+  height: 60px;
+  border: 1px solid $blue;
+}
+
+.mat-stroked-button:hover {
+  border: 1px solid $blue;
+}
+
+.card-title-h2 {
+  color: white;
+  font-size: 3rem;
+  letter-spacing: 0.7;
+  line-height: 0.7;
+}

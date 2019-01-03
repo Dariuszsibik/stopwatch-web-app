@@ -1,0 +1,14 @@
+@import '../assets//styles//variables.scss';
+
+.mat-sidenav-container {
+    background: $gray-200;
+}
+
+.mat-sidenav {
+  background: $cyan;
+  color: $white;
+}
+
+.mat-list-item-content {
+  color: $white;
+}

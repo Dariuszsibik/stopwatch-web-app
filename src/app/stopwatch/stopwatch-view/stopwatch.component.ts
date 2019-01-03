@@ -1,7 +1,6 @@
-import { copyObj } from '@angular/animations/browser/src/util';
 import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
-import { timer, Observable, interval, Subscription } from 'rxjs';
-import { Timer } from './model/timer.model';
+import { interval, Subscription } from 'rxjs';
+import { Timer } from '../model/timer.model';
 
 @Component({
   selector: 'app-stopwatch',
@@ -11,15 +10,16 @@ import { Timer } from './model/timer.model';
 
 export class StopwatchComponent implements OnInit, OnDestroy {
 
-  time = {
+  time: Timer = {
     number: 82800000,
-    play: false
+    play: false,
+    started: 0,
+    currentElapsedTime: 0,
+    totalElapsedTime: 82800000,
+    startTime: null,
   };
-  started = 0;
-  currentElapsedTime = 0;
-  totalElapsedTime = 82800000;
-  startTime = null;
-  timesList = [];
+
+  timesList: Array<Timer> = [];
   subscription: Subscription;
   timeInterval = interval(1);
 
@@ -52,6 +52,7 @@ export class StopwatchComponent implements OnInit, OnDestroy {
   }
 
   addTime() {
+
     console.log(this.timesList);
     this.timesList.push((this.time));
 
@@ -66,20 +67,22 @@ export class StopwatchComponent implements OnInit, OnDestroy {
   }
 
   playWatch() {
-    this.time.play = true;
-    if (!this.startTime) {
 
-      this.startTime = new Date();
+    this.time.play = true;
+    if (!this.time.startTime) {
+
+      this.time.startTime = new Date();
 
     }
 
   }
 
   pauseWatch() {
+
     this.time.play = false;
-    this.startTime = null;
-    this.totalElapsedTime += this.currentElapsedTime;
-    this.currentElapsedTime = 0;
+    this.time.startTime = null;
+    this.time.totalElapsedTime += this.time.currentElapsedTime;
+    this.time.currentElapsedTime = 0;
 
   }
 
@@ -98,12 +101,13 @@ export class StopwatchComponent implements OnInit, OnDestroy {
 
     this.time = {
       number: 82800000,
-      play: false
+      play: false,
+      started: 0,
+      currentElapsedTime: 0,
+      startTime: null,
+      totalElapsedTime: 82800000
     };
 
-    this.currentElapsedTime = 0;
-    this.startTime = null;
-    this.totalElapsedTime = 82800000;
     this.timesList = [];
 
   }
@@ -111,17 +115,18 @@ export class StopwatchComponent implements OnInit, OnDestroy {
   updateTimer() {
 
     if (this.time.play) {
-      this.currentElapsedTime = this.getCurrentElapsedTime();
-      this.time.number = this.totalElapsedTime + this.currentElapsedTime;
+      this.time.currentElapsedTime = this.getCurrentElapsedTime();
+      this.time.number = this.time.totalElapsedTime + this.time.currentElapsedTime;
     } else {
-      this.time.number = this.totalElapsedTime;
+      this.time.number = this.time.totalElapsedTime;
     }
 
   }
 
   getCurrentElapsedTime() {
+
     const now = new Date();
-    const start = new Date(this.startTime);
+    const start = new Date(this.time.startTime);
     return (now.getTime() - start.getTime());
   }
 
