@@ -1,19 +1,29 @@
-import { NgModule } from '@angular/core';
 import {
-    MatIconModule,
-    MatCardModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatDialogModule,
-    MatButtonModule,
-    MatSnackBarModule,
-    MatSelectModule,
-    MatToolbarModule,
-    MatCheckboxModule,
-    MatSidenavModule,
-    MatMenuModule,
-    MatListModule} from '@angular/material';
+  NgModule
+} from '@angular/core';
+import {
+  MatIconModule,
+  MatCardModule,
+  MatInputModule,
+  MatFormFieldModule,
+  MatDialogModule,
+  MatButtonModule,
+  MatSnackBarModule,
+  MatSelectModule,
+  MatToolbarModule,
+  MatCheckboxModule,
+  MatSidenavModule,
+  MatMenuModule,
+  MatListModule,
+  MatSnackBarConfig,
+  MAT_SNACK_BAR_DEFAULT_OPTIONS
+} from '@angular/material';
 
+const MAT_SNACK_BAR_GLOBAL_CONFIG: MatSnackBarConfig = {
+  duration: 2500,
+  verticalPosition: 'bottom',
+  horizontalPosition: 'center'
+}
 
 const MATERIAL_MODULES = [
   MatIconModule,
@@ -28,11 +38,14 @@ const MATERIAL_MODULES = [
   MatToolbarModule,
   MatSidenavModule,
   MatMenuModule,
-  MatListModule
+  MatListModule,
 ];
 
 @NgModule({
   exports: [...MATERIAL_MODULES],
-  declarations: []
+  declarations: [],
+  providers: [
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: MAT_SNACK_BAR_GLOBAL_CONFIG}
+  ]
 })
-export class MaterialModule { }
+export class MaterialModule {}

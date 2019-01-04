@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
-import { interval, Subscription } from 'rxjs';
-import { Timer } from '../model/timer.model';
+import { interval, Subscription, timer } from 'rxjs';
+import { Timer } from './model/timer.model';
+import { MatDialog, MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-stopwatch',
@@ -16,7 +17,9 @@ export class StopwatchComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   timeInterval = interval(1);
 
-  constructor() {}
+  constructor(
+    private toast: MatSnackBar,
+  ) {}
 
   ngOnInit() {
 
@@ -55,8 +58,18 @@ export class StopwatchComponent implements OnInit, OnDestroy {
 
   addTime() {
 
-    console.log(this.timesList);
-    this.timesList.push((this.time));
+    let addTimer = {
+      number: 82800000,
+      play: false,
+      started: 0,
+      currentElapsedTime: 0,
+      totalElapsedTime: 82800000,
+      startTime: null,
+    };
+    Object.assign(addTimer, this.time);
+    this.timesList.push(addTimer);
+
+    this.toast.open('New Time has been successfuly created', "", {panelClass: 'toast-success'})
 
   }
 
@@ -111,6 +124,9 @@ export class StopwatchComponent implements OnInit, OnDestroy {
     };
 
     this.timesList = [];
+
+    this.toast.open('All Time has been successfuly removed', "", {panelClass: 'toast-error'})
+
 
   }
 

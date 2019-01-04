@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Timer } from '../model/timer.model';
 
 @Component({
   selector: 'app-stopwatch-list',
   templateUrl: './stopwatch-list.component.html',
   styleUrls: ['./stopwatch-list.component.scss']
 })
-export class StopwatchListComponent implements OnInit {
+export class StopwatchListComponent {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+  @Input() time: Timer;
 
 }

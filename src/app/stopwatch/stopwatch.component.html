@@ -25,3 +25,9 @@
     </button>
   </mat-card-actions>
 </mat-card>
+
+<mat-list role="list" *ngFor="let time of timesList ">
+  <mat-list-item role="listitem" class="d-flex justify-content-center">
+    <app-stopwatch-list [time]="time"></app-stopwatch-list>
+  </mat-list-item>
+</mat-list>
