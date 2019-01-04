@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col">
+    <h3>
+      Time Details
+      <mat-icon class="float-right close" (click)="close()">close</mat-icon>
+    </h3>
+    <p class="label">Data: {{ time.number | date:'HH:mm:ss:SSS' }} </p>
+    <p class="label">Play: {{ time.play }} </p>
+    <p class="label">Started: {{ time.started }} </p>
+    <p class="label">CurrentElapsedTime: {{ time.currentElapsedTime }} </p>
+    <p class="label">TotalElapsedTime: {{ time.totalElapsedTime }} </p>
+    <p class="label">startTime: {{ time.startTime | date:'HH:mm:ss:SSS' }} </p>
+  </div>
+</div>

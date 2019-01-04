@@ -1,7 +1,22 @@
 @import '../../../assets/styles/variables.scss';
 
-.stopwatch-list {
+.stopwatch-list-item {
   background: $white;
   color: black;
-  border: .7 solid $blue;
+  border: .7px solid $blue;
+  width: 120px;
+  height: 30px;
+  text-align: center;
+  font-size: 15px;
+  font-style: bold;
+}
+
+.mat-list {
+  background: $white;
+  color: black;
+
+}
+
+.delete {
+  cursor: pointer;
 }
