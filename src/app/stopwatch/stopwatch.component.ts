@@ -12,6 +12,10 @@ import { StopwatchService } from './stopwatch.service';
 
 export class StopwatchComponent implements OnInit, OnDestroy {
 
+time: Timer;
+
+timesList: Array<Timer> = [];
+
 subscription: Subscription;
 
   constructor(
@@ -21,7 +25,8 @@ subscription: Subscription;
 
   ngOnInit() {
 
-    this.stopWatchService.init();
+  this.time = this.stopWatchService.time;
+  this.stopWatchService.init();
 
   }
 
@@ -29,5 +34,22 @@ subscription: Subscription;
 
     this.subscription.unsubscribe();
   }
+
+  playWatch() {
+    this.stopWatchService.playWatch();
+  }
+
+  pauseWatch() {
+    this.stopWatchService.pauseWatch();
+  }
+
+  reset() {
+    this.stopWatchService.reset();
+  }
+
+  addTime() {
+    this.stopWatchService.addTime();
+  }
+
 
 }

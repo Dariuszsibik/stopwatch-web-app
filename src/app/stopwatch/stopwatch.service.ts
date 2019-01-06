@@ -7,7 +7,16 @@ import { Subscription, interval } from 'rxjs';
 })
 export class StopwatchService {
 
-  time: Timer;
+  readonly zero_timestamp = 82800000;
+
+  time: Timer = {
+    number: this.zero_timestamp,
+    play: false,
+    started: 0,
+    currentElapsedTime: 0,
+    totalElapsedTime: this.zero_timestamp,
+    startTime: null,
+  };
 
   timesList: Array<Timer> = [];
   subscription: Subscription;
@@ -15,16 +24,14 @@ export class StopwatchService {
 
   constructor() { }
 
-  init() {
 
-    this.time = {
-      number: 82800000,
-      play: false,
-      started: 0,
-      currentElapsedTime: 0,
-      totalElapsedTime: 82800000,
-      startTime: null,
-    };
+  public get currentTime() : Timer {
+
+    return this.time;
+
+  }
+
+  init() {
 
     this.start();
 
