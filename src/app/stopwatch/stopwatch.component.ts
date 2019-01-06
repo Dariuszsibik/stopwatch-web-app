@@ -16,7 +16,7 @@ time: Timer;
 
 timesList: Array<Timer> = [];
 
-subscription: Subscription;
+// subscription: Subscription;
 
   constructor(
     private toast: MatSnackBar,
@@ -26,13 +26,14 @@ subscription: Subscription;
   ngOnInit() {
 
   this.time = this.stopWatchService.time;
+  this.timesList = this.stopWatchService.timesList;
   this.stopWatchService.init();
 
   }
 
   ngOnDestroy() {
 
-    this.subscription.unsubscribe();
+//    this.subscription.unsubscribe();
   }
 
   playWatch() {
@@ -45,10 +46,16 @@ subscription: Subscription;
 
   reset() {
     this.stopWatchService.reset();
+    this.time = this.stopWatchService.time;
+    this.timesList = this.stopWatchService.timesList;
+    this.toast.open('All Time has been successfuly removed', "", {panelClass: 'toast-error'})
+
   }
 
   addTime() {
     this.stopWatchService.addTime();
+    this.timesList = this.stopWatchService.timesList;
+    this.toast.open('New Time has been successfuly created', "", {panelClass: 'toast-success'})
   }
 
 

@@ -28,7 +28,6 @@ export class StopwatchService {
   public get currentTime() : Timer {
 
     return this.time;
-
   }
 
   init() {
@@ -53,7 +52,6 @@ export class StopwatchService {
   }
 
   addTime() {
-
     let addTimer = {
       number: 82800000,
       play: false,
@@ -64,9 +62,6 @@ export class StopwatchService {
     };
     Object.assign(addTimer, this.time);
     this.timesList.push(addTimer);
-
-    //this.toast.open('New Time has been successfuly created', "", {panelClass: 'toast-success'})
-
   }
 
   removeTime(t) {
@@ -120,9 +115,6 @@ export class StopwatchService {
     };
 
     this.timesList = [];
-
-  //  this.toast.open('All Time has been successfuly removed', "", {panelClass: 'toast-error'})
-
 
   }
 
