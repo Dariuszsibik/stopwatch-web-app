@@ -6,6 +6,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StopwatchModule } from './stopwatch/stopwatch.module';
+import { StoreModule } from '@ngrx/store';
+import { stopwatchReducer } from './stopwatch/ngrx/stopwatch.reducer';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,8 @@ import { StopwatchModule } from './stopwatch/stopwatch.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    StopwatchModule
+    StopwatchModule,
+    StoreModule.forRoot({ timeList: stopwatchReducer })
   ],
   providers: [],
   bootstrap: [AppComponent]
