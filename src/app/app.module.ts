@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { StopwatchModule } from './stopwatch/stopwatch.module';
 import { StoreModule } from '@ngrx/store';
 import { stopwatchReducer } from './stopwatch/ngrx/stopwatch.reducer';
+import { environment } from 'src/environments/environment';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,11 @@ import { stopwatchReducer } from './stopwatch/ngrx/stopwatch.reducer';
     BrowserAnimationsModule,
     MaterialModule,
     StopwatchModule,
-    StoreModule.forRoot({ timeList: stopwatchReducer })
+    StoreModule.forRoot({ timeList: stopwatchReducer }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

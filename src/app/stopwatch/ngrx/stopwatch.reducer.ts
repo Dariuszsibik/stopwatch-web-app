@@ -1,15 +1,24 @@
 import { Action } from '@ngrx/store';
 import { ActionTypes } from './stopwatch.actions';
 
-export const initialState = 0;
+export const initialState = [];
 
-export function stopwatchReducer(state = initialState, action: Action) {
+export class MyStateAction implements Action {
+  type: string;
+  payload: any;
+}
+
+export function stopwatchReducer(state = initialState, action: MyStateAction) {
   switch (action.type) {
     case ActionTypes.AddTime:
-      return state + 1;
+      return [...state, action.payload];
+
+    case ActionTypes.RemoveAllTimes:
+    return initialState;
 
     case ActionTypes.RemoveTime:
-      return state - 1;
+      state.splice(action.payload, 1)
+      return state;
 
     default:
       return state;
