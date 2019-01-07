@@ -1,5 +1,6 @@
+<div  *ngIf="timesList">
 
-<mat-list role="list" *ngFor="let time of timesList; let i = index" class="mat-list">
+<mat-list role="list" *ngFor="let time of timesList | async; let i = index " class="mat-list">
   <mat-list-item role="listitem" class="d-flex justify-content-center">
       <button mat-button class="mat-button mat-primary" (click)="showDetails(time)">{{ time.number | date:'HH:mm:ss:SSS' }} </button>
       <div (click)="removeTime(i, $event)">
@@ -10,3 +11,4 @@
   </mat-list>
 
 
+</div>

@@ -18,7 +18,6 @@ export class StopwatchService {
     startTime: null,
   };
 
-  timesList: Array<Timer> = [];
   subscription: Subscription;
   timeInterval = interval(1);
 
@@ -48,27 +47,6 @@ export class StopwatchService {
       this.pauseWatch();
 
     }
-
-  }
-
-  addTime() {
-    let addTimer = {
-      number: 82800000,
-      play: false,
-      started: 0,
-      currentElapsedTime: 0,
-      totalElapsedTime: 82800000,
-      startTime: null,
-    };
-    Object.assign(addTimer, this.time);
-    this.timesList.push(addTimer);
-  }
-
-  removeTime(t) {
-
-    this.timesList = this.timesList.filter((time) => {
-      return time.number !== t.number;
-    });
 
   }
 
@@ -113,8 +91,6 @@ export class StopwatchService {
       startTime: null,
       totalElapsedTime: 82800000
     };
-
-    this.timesList = [];
 
   }
 

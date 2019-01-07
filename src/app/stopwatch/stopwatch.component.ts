@@ -3,7 +3,7 @@ import { interval, Subscription, timer, Observable } from 'rxjs';
 import { Timer } from './model/timer.model';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { StopwatchService } from './stopwatch.service';
-import { AddTime } from './ngrx/stopwatch.actions';
+import { AddTime, RemoveTime, RemoveAllTimes } from './ngrx/stopwatch.actions';
 import { Store, select } from '@ngrx/store';
 
 @Component({
@@ -16,8 +16,6 @@ export class StopwatchComponent implements OnInit, OnDestroy {
 
 time: Timer;
 
-timesList$: Observable<Array<Timer>>;
-
 // subscription: Subscription;
 
   constructor(
@@ -25,14 +23,11 @@ timesList$: Observable<Array<Timer>>;
     private stopWatchService: StopwatchService,
     private store: Store<{ count: number }>
   )
-  {
-    this.timesList$ = store.pipe(select('timeList'));
-  }
+  {}
 
   ngOnInit() {
 
   this.time = this.stopWatchService.time;
-  //this.timesList = this.stopWatchService.timesList;
   this.stopWatchService.init();
 
   }
@@ -43,26 +38,40 @@ timesList$: Observable<Array<Timer>>;
   }
 
   playWatch() {
+
     this.stopWatchService.playWatch();
+
   }
 
   pauseWatch() {
+
     this.stopWatchService.pauseWatch();
+
   }
 
   reset() {
+
     this.stopWatchService.reset();
     this.time = this.stopWatchService.time;
-    //this.timesList = this.stopWatchService.timesList;
+    this.store.dispatch(new RemoveAllTimes());
     this.toast.open('All Time has been successfuly removed', "", {panelClass: 'toast-error'})
 
   }
 
   addTime() {
-    this.stopWatchService.addTime();
-    //this.timesList$ = this.stopWatchService.timesList;
+
+    let addTimer = {
+      number: 82800000,
+      play: false,
+      started: 0,
+      currentElapsedTime: 0,
+      totalElapsedTime: 82800000,
+      startTime: null,
+    };
+    Object.assign(addTimer, this.time);
+    this.store.dispatch(new AddTime(addTimer));
     this.toast.open('New Time has been successfuly created', "", {panelClass: 'toast-success'})
-    this.store.dispatch(new AddTime());
+
   }
 
 
