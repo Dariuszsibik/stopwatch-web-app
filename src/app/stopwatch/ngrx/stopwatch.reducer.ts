@@ -17,7 +17,7 @@ export function stopwatchReducer(state = initialState, action: MyStateAction) {
     return initialState;
 
     case ActionTypes.RemoveTime:
-      state.splice(action.payload, 1)
+      state.splice(action.payload, 1);
       return state;
 
     default:

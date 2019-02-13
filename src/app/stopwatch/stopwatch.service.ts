@@ -7,7 +7,7 @@ import { Subscription, interval } from 'rxjs';
 })
 export class StopwatchService {
 
-  readonly zero_timestamp = 82800000;
+  readonly zero_timestamp = new Date().setHours(0, 0, 0, 0);
 
   time: Timer = {
     number: this.zero_timestamp,
@@ -24,7 +24,7 @@ export class StopwatchService {
   constructor() { }
 
 
-  public get currentTime() : Timer {
+  public get currentTime(): Timer {
 
     return this.time;
   }
@@ -111,4 +111,5 @@ export class StopwatchService {
     const start = new Date(this.time.startTime);
     return (now.getTime() - start.getTime());
   }
+
 }
